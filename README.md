@@ -1,6 +1,6 @@
-#專案介紹
+# 專案介紹
 使用Mybatis generator 與不同資料庫連線 產生POJO 和 Mapper.xml
-#使用說明
+# 使用說明
 1.設定generatorConfig.xm的連線資訊 (ex: generatorConfig-Mysql ,這是與Mysql資料庫的連線)
 
 ```xml
