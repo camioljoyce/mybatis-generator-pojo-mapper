@@ -33,4 +33,36 @@
     select StockId, StockName, LastUpdateTime, CreateTime
     from stockinfo
   </select>
+  <resultMap id="BaseResultMap" type="camiol.pojo.StockInfoDo">
+    <id column="StockId" jdbcType="INTEGER" property="stockId" />
+    <result column="StockName" jdbcType="VARCHAR" property="stockName" />
+    <result column="LastUpdateTime" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from stockinfo
+    where StockId = #{stockId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="camiol.pojo.StockInfoDo">
+    insert into stockinfo (StockId, StockName, LastUpdateTime, 
+      CreateTime)
+    values (#{stockId,jdbcType=INTEGER}, #{stockName,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="camiol.pojo.StockInfoDo">
+    update stockinfo
+    set StockName = #{stockName,jdbcType=VARCHAR},
+      LastUpdateTime = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP}
+    where StockId = #{stockId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select StockId, StockName, LastUpdateTime, CreateTime
+    from stockinfo
+    where StockId = #{stockId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select StockId, StockName, LastUpdateTime, CreateTime
+    from stockinfo
+  </select>
 </mapper>

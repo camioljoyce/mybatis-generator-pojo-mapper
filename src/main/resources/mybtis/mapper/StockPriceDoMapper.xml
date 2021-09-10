@@ -41,4 +41,44 @@
     select StockId, TranDate, TranTime, Price, Amount, LastUpdateTime, CreateTime
     from stockprice
   </select>
+  <resultMap id="BaseResultMap" type="camiol.pojo.StockPriceDo">
+    <id column="StockId" jdbcType="INTEGER" property="stockId" />
+    <result column="TranDate" jdbcType="VARCHAR" property="tranDate" />
+    <result column="TranTime" jdbcType="VARCHAR" property="tranTime" />
+    <result column="Price" jdbcType="INTEGER" property="price" />
+    <result column="Amount" jdbcType="INTEGER" property="amount" />
+    <result column="LastUpdateTime" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from stockprice
+    where StockId = #{stockId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="camiol.pojo.StockPriceDo">
+    insert into stockprice (StockId, TranDate, TranTime, 
+      Price, Amount, LastUpdateTime, 
+      CreateTime)
+    values (#{stockId,jdbcType=INTEGER}, #{tranDate,jdbcType=VARCHAR}, #{tranTime,jdbcType=VARCHAR}, 
+      #{price,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="camiol.pojo.StockPriceDo">
+    update stockprice
+    set TranDate = #{tranDate,jdbcType=VARCHAR},
+      TranTime = #{tranTime,jdbcType=VARCHAR},
+      Price = #{price,jdbcType=INTEGER},
+      Amount = #{amount,jdbcType=INTEGER},
+      LastUpdateTime = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP}
+    where StockId = #{stockId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select StockId, TranDate, TranTime, Price, Amount, LastUpdateTime, CreateTime
+    from stockprice
+    where StockId = #{stockId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select StockId, TranDate, TranTime, Price, Amount, LastUpdateTime, CreateTime
+    from stockprice
+  </select>
 </mapper>
